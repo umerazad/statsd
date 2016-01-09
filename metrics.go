@@ -115,8 +115,8 @@ func newMetric(bucket, value, mtype, rate []byte) (*Metric, error) {
 
 		if len(rate) > 0 {
 			samplingRate, err = strconv.ParseFloat(string(rate), 64)
-			if samplingRate > 1 || err != nil {
-				return nil, fmt.Errorf("Failed to parse sampling rate: %s", rate)
+			if err != nil {
+				return nil, fmt.Errorf("Failed to parse sampling rate: %s: %v", rate, err)
 			}
 		}
 
